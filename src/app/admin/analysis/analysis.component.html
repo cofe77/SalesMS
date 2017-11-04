@@ -1,0 +1,140 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="bc">
+      <table class="table table-condensed">
+        <caption class="caption">近期营业统计</caption>
+        <thead>
+        <tr>
+          <th></th>
+          <th>订单完成数</th>
+          <th>营业总额</th>
+          <th>酒水类</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>今日</td>
+          <td>40</td>
+          <td>￥5000.00</td>
+          <td>400</td>
+        </tr>
+        <tr>
+          <td>昨日</td>
+          <td>35</td>
+          <td>￥4000.00</td>
+          <td>300</td>
+        </tr>
+        <tr>
+          <td>历史每日平均</td>
+          <td>38</td>
+          <td>￥4857.00</td>
+          <td>370</td>
+        </tr>
+        <tr>
+          <td>历史峰值</td>
+          <td>60</td>
+          <td>￥6000.00</td>
+          <td>570</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-8">
+    <div class="bc">
+      <span style="line-height: 40px;">营业额统计图</span>
+      <div class="btn-group btn-gp-fl" role="group" aria-label="...">
+        <button type="button" class="btn btn-default" (click)="changeECharts('sevenDays')">过去七天</button>
+        <button type="button" class="btn btn-default" (click)="changeECharts('thirtyDays')">过去30天</button>
+
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{subMenuYear}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a (click)="menuYearSelected('2015年')">2015年</a></li>
+            <li><a (click)="menuYearSelected('2016年')">2016年</a></li>
+            <li><a (click)="menuYearSelected('2017年')">2017年</a></li>
+          </ul>
+        </div>
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{subMenuMonth}}
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a (click)="menuMonthSelected('1月')">1月</a></li>
+            <li><a (click)="menuMonthSelected('2月')">2月</a></li>
+            <li><a (click)="menuMonthSelected('3月')">3月</a></li>
+            <li><a (click)="menuMonthSelected('4月')">4月</a></li>
+            <li><a (click)="menuMonthSelected('5月')">5月</a></li>
+            <li><a (click)="menuMonthSelected('6月')">6月</a></li>
+            <li><a (click)="menuMonthSelected('7月')">7月</a></li>
+            <li><a (click)="menuMonthSelected('8月')">8月</a></li>
+            <li><a (click)="menuMonthSelected('9月')">9月</a></li>
+            <li><a (click)="menuMonthSelected('10月')">10月</a></li>
+            <li><a (click)="menuMonthSelected('11月')">11月</a></li>
+            <li><a (click)="menuMonthSelected('12月')">12月</a></li>
+          </ul>
+        </div>
+      </div>
+      <div echarts [options] = "chartOption" [loading]="showloading" class="demo-chart"></div>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="bc">
+      <span style="line-height: 40px;">TOP销售量</span>
+      <div class="btn-group btn-gp-fl" role="group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{subMenuGoodsType}}
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a (click)="menuGoodsTypeSelected('白酒')">白酒</a></li>
+          <li><a (click)="menuGoodsTypeSelected('啤酒')">啤酒</a></li>
+          <li><a (click)="menuGoodsTypeSelected('零食')">零食</a></li>
+        </ul>
+        <button type="button" class="btn btn-default" (click)="changeECharts('sevenDays')">过去七天</button>
+        <button type="button" class="btn btn-default" (click)="changeECharts('thirtyDays')">过去30天</button>
+      </div>
+      <div class="row">
+        <div class="col-lg-12" >
+          <table  class="table table-condensed">
+            <thead>
+              <tr>
+                <th>排名</th>
+                <th>商品名称</th>
+                <th>销售量</th>
+                <th>占比</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>雪花啤酒</td>
+                <td>2000</td>
+                <td>40%</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>8°</td>
+                <td>1500</td>
+                <td>30%</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>勇闯天涯</td>
+                <td>1500</td>
+                <td>30%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

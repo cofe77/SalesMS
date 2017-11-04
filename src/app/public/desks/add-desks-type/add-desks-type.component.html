@@ -1,0 +1,21 @@
+<h2 md-dialog-title>{{action}}</h2>
+<md-dialog-content>
+  <form class="form-inline" [formGroup]="deskTypeForm" novalidate>
+    <div class="form-group">
+      <label class="sr-only"></label>
+      <div class="input-group">
+        <input type="text" class="form-control" formControlName="name" placeholder="请输入新的桌位类别名称" (keyup)="checkDeskTypeExist()" >
+        <div class="error" *ngIf="deskTypeForm.get('name').invalid&&deskTypeForm.get('name').dirty">
+          请输入桌位类别
+        </div>
+        <div class="error" *ngIf="deskTypeIsExist">
+          桌位类别已存在
+        </div>
+      </div>
+    </div>
+  </form>
+</md-dialog-content>
+<md-dialog-actions>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-primary"  color="primary" md-dialog-close>关闭</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button [disabled]="deskTypeForm.invalid||deskTypeIsExist" (click)="addDeskType()" class="btn btn-danger"  color="primary">确认</button>
+</md-dialog-actions>

@@ -1,0 +1,41 @@
+<h2 md-dialog-title>搜索存酒</h2>
+<md-dialog-content>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="searchForm">
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <label class="sr-only">名称</label>
+            <input type="text" class="form-control input-lg" placeholder="请输入二维码上面的数字" #QRKeyCode />
+          </div>
+          <button type="submit" class="btn btn-lg btn-info" (click)="searchSavedBeerByKeyCode(QRKeyCode.value)">搜索</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table table-hover table-bordered table-striped">
+        <caption class="caption">存酒详情</caption>
+        <thead>
+        <tr>
+          <th>商品名称</th>
+          <th>商品数量</th>
+          <th>存入时间</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of savedBeer?.savedBeersItem">
+          <td>{{allGoods|goodsName:item.goodsId}}</td>
+          <td>{{item.value}}</td>
+          <td>{{item.savedTime | date:'yyyy-MM-dd hh:mm:ss'}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button class="btn btn-danger" (click)="selectSavedBeerConfirm()">确认使用</button>
+  <button class="btn btn-primary pull-right" md-dialog-close>关闭</button>
+</md-dialog-actions>

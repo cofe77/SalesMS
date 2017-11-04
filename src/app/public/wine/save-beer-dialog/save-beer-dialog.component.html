@@ -1,0 +1,98 @@
+<h2 md-dialog-title>存酒</h2>
+<md-dialog-content>
+  <div class="row">
+    <div class="col-lg-6 orderForm">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">订单操作：</label>
+          <div class="col-sm-9">
+            <button type="button" class="btn btn-primary" (click)="selectOrder()">选择订单</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">订单单号：</label>
+          <div class="col-sm-9" style="color: red">
+            {{orderDec}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">订单详情：</label>
+          <div class="col-sm-9">
+            <table class="table table-hover table-bordered table-striped">
+              <thead>
+              <tr>
+                <td>名称</td>
+                <td>数量</td>
+                <td>操作</td>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of orderItems">
+                <td>{{allGoods|goodsName:item.goodsId}}</td>
+                <td>
+                  <div class="btn-group" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default" (click)="orderItemNumberReduce($event,item.goodsId)">-</button>
+                    <button type="button" class="btn btn-default" disabled [id]="'order'+item.goodsId">{{item.count}}</button>
+                    <button type="button" class="btn btn-default" (click)="orderItemNumberPlus($event,item.count,item.goodsId)">+</button>
+                  </div>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-danger" [id]="'btn'+item.goodsId" (click)="addOrderItemToTempSaveBeer($event,item.goodsId)">添加到存酒单</button>
+                </td>
+              </tr>
+              <tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="isHaveOrderId" class="col-lg-6 addedTable">
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="col-sm-3 control-label">存酒单操作：</label>
+          <div class="col-sm-9">
+            <button type="button" class="btn btn-xs btn-danger" (click)="addNewSavedBeer()">新建</button>
+            <button type="button" *ngIf="isHaveVipId" class="btn btn-xs btn-primary" (click)="useVipSavedBeer()">使用会员存酒单</button>
+            <button type="button" class="btn btn-xs btn-primary" (click)="scanSavedBeerQRCode()">扫描二维码</button>
+            <button type="button" class="btn btn-xs btn-primary" (click)="searchSavedBeerByKeyCode()">搜索单号</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">存酒单号：</label>
+          <div class="col-sm-9" style="color: red">
+            {{savedBeerDec}}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3 control-label">待添加存酒详情：</label>
+          <div class="col-sm-9">
+            <table class="table table-hover table-bordered table-striped">
+              <thead>
+              <tr>
+                <th>名称</th>
+                <th>数量</th>
+                <th>操作</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of waitForSaveBeerItemsList">
+                <td>{{allGoods|goodsName:item.goodsId}}</td>
+                <td>{{item.count}}</td>
+                <td>
+                  <input (click)="deleteTempSavedWine(item.goodsId)" type="button" class="btn btn-danger" value="删除">
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button class="btn btn-primary pull-right"  color="primary" md-dialog-close>关闭</button>
+  <button class="btn btn-danger" *ngIf="isAddNewSavedBeer" [disabled]="!isHaveOrderId||!isAddNewSavedBeer||waitForSaveBeerItemsListEmpty" color="primary" (click)="saveBeerConfirm()">确认新建存酒单</button>
+  <button class="btn btn-danger" *ngIf="isHaveSavedBeer" [disabled]="!isHaveOrderId||!isHaveSavedBeer||waitForSaveBeerItemsListEmpty" color="primary" (click)="saveBeerConfirm()">确认保存存酒单</button>
+</md-dialog-actions>

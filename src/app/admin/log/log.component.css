@@ -1,0 +1,39 @@
+.searchForm{
+  width:700px;
+  margin:30px auto;
+  display: block;
+  box-sizing: border-box;
+
+  border: 1px solid #eeeeee;
+}
+table th{
+  text-align: center !important;
+  vertical-align: middle !important;
+  font-size: 20px;
+  font-weight: bold;
+}
+.demo-chart {
+  height: 500px;
+}
+.list-ul {
+  height: 480px;
+}
+.bc{
+  background-color: white;
+  border: 1px solid #e1e2e2;
+  border-radius: 2px;
+  margin:10px;
+}
+a:hover{
+  cursor: pointer;
+}
+.btn-gp-fl{
+  float: right;
+}
+.btnSearch{
+  border-radius: 0 4px 4px 0;
+}
+.datePickerInput{
+  width:200px;
+  border-radius: 4px 0 0 4px;
+}

@@ -1,0 +1,17 @@
+.searchForm{
+  width:700px;
+  margin:30px auto;
+  display: block;
+  box-sizing: border-box;
+
+  border: 1px solid #eeeeee;
+}
+table td,th{
+  text-align: center !important;
+  vertical-align: middle !important;
+  font-size: 20px;
+  font-weight: bold;
+}
+.pagination a{
+  cursor: pointer;
+}

@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="searchForm">
+      <button (click)="addDesk()" type="button" class="btn btn-lg btn-danger">添加桌位</button>
+      <button (click)="deskTypeManage()" type="button" class="btn btn-lg btn-danger">桌位类别管理</button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-hover table-bordered table-striped">
+      <caption class="caption">桌位列表</caption>
+      <thead>
+      <tr>
+        <th>桌位名称</th>
+        <th>桌位号码</th>
+        <th>桌位类型</th>
+        <!--<th>状态</th>-->
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let desk of desks">
+        <td>{{desk.name}}</td>
+        <td>{{desk.deskNumber}}</td>
+        <td>{{deskTypes|deskStatus:desk.typeId}}</td>
+        <!--<td>{{desk.isEnabled?'可用':'禁用'}}</td>-->
+        <td>
+          <input (click)="showDeskQRCode(desk.id)" type="button" class="btn btn-info" value="查看桌位二维码">
+          <!--<input (click)="updateDeskStatus(desk.id)" type="button" class="btn btn-danger" value="禁用">-->
+          <input (click)="updateDesk(desk.id)" type="button" class="btn btn-primary" value="修改信息">
+          <input (click)="deleteDesk(desk.id)" type="button" class="btn btn-danger" value="删除桌位">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <nav *ngIf="deskInitIsFinished" aria-label="..." id="goodsPag" style="margin: 0 auto;" [style.width]="(deskPage+2)*34+'px'">
+      <ul class="pagination">
+        <li class="disabled" *ngIf="currentDeskPage!=1"><a (click)="initDeskInfo(currentDeskPage-1)" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+        <li class="disabled" *ngIf="currentDeskPage==1"><span aria-hidden="true">&laquo;</span></li>
+        <li *ngFor="let deskPg of deskPageArray" [class.active]="deskPg==currentDeskPage"><a (click)="initDeskInfo(deskPg)">{{deskPg}}<span class="sr-only">(current)</span></a></li>
+        <li class="disabled" *ngIf="currentDeskPage!=deskPage"><a (click)="initDeskInfo(currentDeskPage+1)" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+        <li class="disabled" *ngIf="currentDeskPage==deskPage"><span aria-hidden="true">&raquo;</span></li>
+      </ul>
+    </nav>
+  </div>
+</div>

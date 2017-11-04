@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="searchForm">
+      <form class="form-inline" role="form">
+        <button type="button" (click)="searchSavedBeerByKeyCode()" class="btn btn-lg btn-primary">搜索存酒</button>
+        <button type="button" (click)="scanSavedBeerQRCode()" class="btn btn-lg btn-danger">扫描存酒二维码</button>
+        <button type="button" (click)="toSaveBeer()" class="btn btn-lg btn-danger">存酒</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-hover table-bordered table-striped">
+      <caption class="caption">查询结果</caption>
+      <thead>
+      <tr>
+        <th>商品名称</th>
+        <th>商品数量</th>
+        <th>存入时间</th>
+      </tr>
+      </thead>
+      <tbody *ngIf="isHaveSavedBeer">
+      <tr *ngFor="let savedBeersItem of savedBeersItems">
+        <td>{{allGoods|goodsName:savedBeersItem.goodsId}}</td>
+        <td>{{savedBeersItem.value}}</td>
+        <td>{{savedBeersItem.savedTime|date:'yyyy-MM-dd HH:mm:ss'}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

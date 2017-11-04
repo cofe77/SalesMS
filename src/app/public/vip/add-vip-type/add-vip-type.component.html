@@ -1,0 +1,33 @@
+<h2 md-dialog-title>{{action}}</h2>
+<md-dialog-content>
+  <form class="form-horizontal" [formGroup]="vipTypeForm" novalidate>
+    <div class="form-group">
+      <label class="col-sm-4 control-label">等级名称：</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control" (keyup)="checkVipTypeIsExist()" formControlName="name" id="typeName" placeholder="请输入新的会员等级名称">
+        <div class="error" *ngIf="vipTypeForm.get('name').invalid&&vipTypeForm.get('name').dirty">
+          请输入等级名称
+        </div>
+        <div class="error" *ngIf="vipTypeIsExist">
+          等级名称已经存在
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-4 control-label">等级折扣：</label>
+      <div class="col-sm-8">
+        <input type="number" class="form-control" formControlName="discount" id="typeDiscount" pattern="^[0].\d{1,2}$" placeholder="请输入等级折扣">
+        <div class="error" *ngIf="vipTypeForm.get('discount').invalid&&vipTypeForm.get('discount').touched&&!vipTypeForm.get('discount').dirty">
+          请输入等级折扣
+        </div>
+        <div class="error" *ngIf="vipTypeForm.get('discount').invalid&&vipTypeForm.get('discount').touched&&vipTypeForm.get('discount').dirty">
+          折扣错误，需要大于0小于1的两位小数，如0.99
+        </div>
+      </div>
+    </div>
+  </form>
+</md-dialog-content>
+<md-dialog-actions>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button (click)="addVipType()"  [disabled]="vipTypeForm.invalid||vipTypeIsExist" class="btn btn-danger"  color="primary">确认添加</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button class="btn btn-primary"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>

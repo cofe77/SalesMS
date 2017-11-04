@@ -1,0 +1,21 @@
+<h2 md-dialog-title>{{action}}</h2>
+<md-dialog-content>
+  <form class="form-inline" [formGroup]="goodsTypeForm" novalidate>
+    <div class="form-group">
+      <label class="sr-only"></label>
+      <div class="input-group">
+        <input type="text" class="form-control" formControlName="name" placeholder="请输入新的商品类别名称"  (keyup)="checkGoodsTypeExist()" >
+        <div class="error" *ngIf="goodsTypeForm.get('name').invalid&&goodsTypeForm.get('name').dirty">
+          请输入商品类别
+        </div>
+        <div class="error" *ngIf="goodsTypeIsExist">
+          商品类别已存在
+        </div>
+      </div>
+    </div>
+  </form>
+</md-dialog-content>
+<md-dialog-actions>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button [disabled]="goodsTypeForm.invalid||goodsTypeIsExist" (click)="addGoodsType()" class="btn btn-danger"  color="primary">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button class="btn btn-primary"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>

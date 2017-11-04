@@ -1,0 +1,50 @@
+#imgCropperBox{background-color:#eee;height:400px; width:900px;margin:20px;position:relative;}
+.fileInput {
+  position: relative;
+  display: inline-block;
+  background: #D0EEFF;
+  border: 1px solid #99D3F5;
+  border-radius: 4px;
+  padding: 4px 12px;
+  overflow: hidden;
+  color: #1E88C7;
+  text-decoration: none;
+  text-indent: 0;
+  line-height: 20px;
+}
+.fileInput input {
+  position: absolute;
+  font-size: 100px;
+  right: 0;
+  top: 0;
+  opacity: 0;
+}
+.fileInput:hover {
+  background: #AADFFD;
+  border-color: #78C3F3;
+  color: #004974;
+  text-decoration: none;
+}
+#label{border:1px solid #ccc;background-color:rgba(0,0,0,0.2);text-align:center;height:400px; width:500px;position:relative;float: left}
+#labelRight{border:1px solid #ccc;background-color:#eee;text-align:center;height:400px; width:400px;position:relative;float: left}
+#get_image{position:absolute;}
+#edit_pic{position:absolute;display:none;background:#000;}
+#cover_box{position: absolute;z-index: 9999;display:none;top:0;left:0;}
+#show_edit{display:inline-block;
+  width:300px;
+  height:300px;
+}
+.noFocus:focus{
+  outline:none;
+}
+.up-frame-bj .up-frame-radius{padding-bottom: 20px;border-radius: 5px;}
+.up-frame-parent .up-frame-header{height: 50px;padding: 0;line-height: 50px;border-bottom:solid 1px #e5e5e5;}
+.up-frame-parent .up-frame-header label{font-size: 16px;float: left;margin-left: 14px;color: #808080;}
+
+.up-frame-parent .up-pre-before {width:335px;height: 335px;padding:5px;float: left;background: #fcfcfc;border: 1px solid #e3e3e3;}
+.up-frame-parent .up-pre-before img{width: 100%;}
+
+.up-frame-parent .up-pre-after{background: #fcfcfc;overflow: hidden;width: 186px;height: 186px;border: 1px solid #e3e3e3;float: left;margin-left: 25px;}
+
+.up-frame-parent .up-control-btns{width: 150px;height:30px;margin-left: auto;margin-right: auto;background: #dddddd;text-align: center;line-height: 30px; margin-top: 30px;}
+.up-frame-parent .up-control-btns span{width: 30%;}

@@ -1,0 +1,83 @@
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <div>
+        <app-nav></app-nav>
+      </div>
+    </div>
+    <div class="row" id="operatorDesk">
+      <div class="col-lg-1 col-md-1 col-sm-1">
+        <app-menu></app-menu>
+      </div>
+      <div class="col-lg-9 col-md-9 col-sm-9 desk-top">
+        <router-outlet></router-outlet>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 waitForDispatchBox">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <div class="panel panel-danger">
+              <div class="panel-heading">
+                <h3 class="panel-title">等待派送</h3>
+                <!--<hr>-->
+                <!--<nav aria-label="...">-->
+                  <!--<ul class="pagination pagination-sm">-->
+                    <!--<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>-->
+                    <!--<li class=""><a href="#">1 <span class="sr-only">(current)</span></a></li>-->
+                    <!--<li class=""><a href="#">2 <span class="sr-only">(current)</span></a></li>-->
+                    <!--<li class=""><a href="#">3 <span class="sr-only">(current)</span></a></li>-->
+                    <!--<li class=""><a href="#">4 <span class="sr-only">(current)</span></a></li>-->
+                    <!--<li class=""><a href="#">5 <span class="sr-only">(current)</span></a></li>-->
+                    <!--<li class=""><a href="#">6 <span class="sr-only">(current)</span></a></li>-->
+                    <!--<li class=""><a href="#">7 <span class="sr-only">(current)</span></a></li>-->
+                    <!--<li class="active"><a href="#">当前 <span class="sr-only">(current)</span></a></li>-->
+                  <!--</ul>-->
+                <!--</nav>-->
+              </div>
+              <div class="panel-body">
+                <div class="dispatchAlerts">
+                  <div *ngFor="let waitForDispatch of waitForDispatchs">
+                    <div *ngIf="waitForDispatch.goodsId!=0" class="alert alert-danger" role="alert">
+                      <h4 class="alert-heading">{{waitForDispatch.deskNumber}}号桌待派送</h4>
+                      <p *ngIf="waitForDispatch.goodsId!=0">{{allGoods|goodsName:waitForDispatch.goodsId}}：{{waitForDispatch.count}}</p>
+                      <div class="btn-3d">
+                        <div class="spanGroup">
+                          <div>
+                            <div class="btn-toolbar confirmGroup" role="toolbar" aria-label="...">
+                              <div class="btn-group btn-group-xs" role="group" aria-label="...">
+                                <button class="btn btn-danger dispatchConfirm" (click)="dispatchConfirmYes(waitForDispatch.id)">是</button>
+                                <button class="btn btn-info dispatchConfirm" (click)="dispatchConfirmNo($event)">否</button>
+                              </div>
+                            </div>
+                          </div>
+                          <div>
+                            <div class="btn-toolbar" role="toolbar" aria-label="...">
+                              <div class="btn-group" role="group" aria-label="...">
+                                <button class="btn-lg btn-success dispatchConfirm" (click)="dispatchConfirm($event)">派送</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="maskDiv" class="maskDiv" *ngIf="!isOperatorExist">
+      <div class="passwordDiv">
+        <div class="tipsDiv">系统已锁定</div>
+        <div class="input-group">
+          <input type="password" class="form-control" #screenLockInput placeholder="请输入管理员密码">
+          <span class="input-group-btn">
+            <button (click)="validateOperator(screenLockInput.value)" class="btn btn-default operatorConfirmBtn" type="button">确认</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div toastContainer class="toastContainer"></div>

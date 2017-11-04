@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-lg-6">
+    <div class="bc">
+      <span style="line-height: 40px;">操作员日志</span>
+      <div class="btn-group pull-right" role="group" aria-label="...">
+        <input placeholder="选择日期查询" type="text" class="form-control pull-left datePickerInput" [(bsValue)]="bsRangeValue" bsDaterangepicker #dpr="bsDaterangepicker" [minDate]="minDate" [maxDate]="maxDate" [bsConfig]="bsConfig">
+        <button type="button" class="btn btn-danger btnSearch">查询</button>
+      </div>
+      <div class="row">
+        <div class="col-lg-12" >
+          <table  class="table table-condensed">
+            <thead>
+            <tr>
+              <th>操作员姓名</th>
+              <th>手机号码</th>
+              <th>日志</th>
+              <th>时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>小王</td>
+              <td>133****3452</td>
+              <td>添加商品</td>
+              <td>2017-9-20 22:22:22</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="bc">
+      <div class="btn-group pull-left" role="group">
+        <input placeholder="选择日期查询" type="text" class="form-control pull-left datePickerInput" [(bsValue)]="bsRangeValue" bsDaterangepicker #dpr="bsDaterangepicker" [minDate]="minDate" [maxDate]="maxDate" [bsConfig]="bsConfig">
+        <button type="button" class="btn btn-danger btnSearch">查询</button>
+      </div>
+      <span style="line-height: 40px;" class="pull-right">管理员日志</span>
+      <div class="row">
+        <div class="col-lg-12" >
+          <table  class="table table-condensed">
+            <thead>
+            <tr>
+              <th>日志</th>
+              <th>时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td>添加商品</td>
+              <td>2017-9-20 22:22:22</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<h2 md-dialog-title>桌位二维码</h2>
+<md-dialog-content>
+  <div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="thumbnail">
+          <div style="width: 100%;height: 300px;margin: 0 auto;text-align: center">
+            <img *ngIf="deskQRCodeImgLoadingIsFinish" [src]="deskQRCodeBase64" style="height: 300px;width: auto" alt="...">
+          </div>
+          <div class="caption">
+            <h3>13号桌二维码</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button class="btn btn-primary pull-right"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>

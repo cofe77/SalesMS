@@ -1,0 +1,81 @@
+<h2 md-dialog-title>订单详情</h2>
+<md-dialog-content>
+  <div>
+    <div class="row">
+      <div class="col-sm-12">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">订单号码：</label>
+            <div class="col-sm-10">
+              {{order?.serializtion}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">时间：</label>
+            <div class="col-sm-10">
+              {{order?.createTime|date:'yyyy-MM-dd hh:mm:ss'}}（开单）— {{order?.finishedTime|date:'yyyy-MM-dd hh:mm:ss'}}（结单）
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">订单商品：</label>
+            <div class="col-sm-10">
+              <table class="table table-hover table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <td>名称</td>
+                    <td>单价（元）</td>
+                    <td>数量</td>
+                    <td>价格</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of orderItems">
+                    <td *ngIf="item.goodsId>0">{{allGoods|allGoodsName:item.goodsId}}</td>
+                    <td *ngIf="item.goodsId==0">{{item.remarks}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.count}}</td>
+                    <td>{{item.price*item.count|number:'1.2-2'}}</td>
+                  </tr>
+                  <tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">消费金额：</label>
+            <div class="col-sm-10">
+              <table class="table table-hover table-bordered table-striped">
+                <thead>
+                <tr  style="text-align: center">
+                  <td>订单价格</td>
+                  <td>余额抵扣</td>
+                  <td>存酒抵扣</td>
+                  <td>应收金额</td>
+                  <td>现金实收</td>
+                  <td>微信支付宝实收</td>
+                  <td>备注</td>
+                </tr>
+                </thead>
+                <tbody style="font-size: 18px">
+                <tr class="danger" style="text-align: right">
+                  <td>{{order?.totalPrice|number:'1.2-2'}}</td>
+                  <td>-{{order?.dedcuteSettlement|number:'1.2-2'}}</td>
+                  <td>-{{order?.savedBeerdsDedcute|number:'1.2-2'}}</td>
+                  <td style="color: red">{{order?.totalPrice-order?.dedcuteSettlement-order?.savedBeerdsDedcute|number:'1.2-2'}}</td>
+                  <td>{{order?.cashSettlement|number:'1.2-2'}}</td>
+                  <td>{{order?.onlineSettlement|number:'1.2-2'}}</td>
+                  <td>{{order?.operatorRemarks}}</td>
+                </tr>
+                <tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button class="btn btn-primary pull-right"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>

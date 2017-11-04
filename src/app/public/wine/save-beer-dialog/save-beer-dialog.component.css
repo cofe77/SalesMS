@@ -1,0 +1,13 @@
+.orderForm,.addedTable{
+  margin:0;
+  padding: 0 10px;
+}
+.orderForm{
+  border-right: 1px dashed #eeeeee;
+}
+.control-label{
+  padding:0;
+}
+.form-group{
+  margin-bottom: 15px;
+}

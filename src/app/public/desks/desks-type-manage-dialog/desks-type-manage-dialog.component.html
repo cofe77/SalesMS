@@ -1,0 +1,29 @@
+<h2 md-dialog-title>{{action}}</h2>
+<md-dialog-content>
+  <table class="table table-hover table-bordered table-striped">
+    <caption class="caption">桌位类别
+      <input (click)="addDeskType()" type="button" class="btn btn-danger" value="添加类别">
+    </caption>
+    <thead>
+    <tr>
+      <th>类别名称</th>
+      <th>操作</th>
+      <!--<th>全选&nbsp;<input type="checkbox" (click)="checkAll()"/></th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let deskType of deskTypes">
+      <td>{{deskType.name}}</td>
+      <td>
+        <input (click)="editDeskType(deskType.id)" type="button" class="btn btn-info" value="修改">
+        <input (click)="deleteDeskTypeConfirm(deskType.id)" type="button" class="btn btn-danger" value="删除">
+      </td>
+      <!--<td><input type="checkbox" [id]="'checkBox'+deskType.id" (click)="checkToDelete($event,deskType.id)"/></td>-->
+    </tr>
+    </tbody>
+  </table>
+    <!--<input (click)="deleteMultiDeskTypeConfirm()" type="button" class="btn btn-danger pull-right" value="删除选中">-->
+</md-dialog-content>
+<md-dialog-actions>
+    <button class="btn btn-primary"  md-dialog-close>关闭</button>
+</md-dialog-actions>

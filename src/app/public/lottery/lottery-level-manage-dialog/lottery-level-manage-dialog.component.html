@@ -1,0 +1,39 @@
+<h2 md-dialog-title>{{action}}</h2>
+<md-dialog-content>
+  <div class="row">
+    <div class="col-lg-12">
+      <form class="form-inline" role="form">
+        <button type="button" (click)="addLotteryLevel()" class="btn btn-danger">添加等级</button>
+        <button type="button" (click)="deleteAllLotteryLevel()" class="btn btn-danger">清空重设</button>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table table-hover table-bordered table-striped">
+        <thead>
+        <tr>
+          <td>等级</td>
+          <td>最低消费金额</td>
+          <td>最高消费金额</td>
+          <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>等级一</td>
+          <td>0</td>
+          <td>200</td>
+          <td>
+            <button type="button" (click)="editLotteryLevel()" class="btn btn-danger">修改</button>
+            <button type="button" (click)="deleteLotteryLevel()" class="btn btn-danger">删除</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button class="btn btn-primary"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>

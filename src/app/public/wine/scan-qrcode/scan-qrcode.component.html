@@ -1,0 +1,10 @@
+<h2 md-dialog-title>{{data.title}}</h2>
+<md-dialog-content>
+  <div class="scan-QRCode">
+    {{loadingContent}}
+    <input type="text" id="QRCodeInput" autofocus="autofocus" [(ngModel)]="QRCode" style="width: 0;height: 0;opacity: 0"/>
+  </div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button class="btn btn-primary pull-right"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>

@@ -1,0 +1,28 @@
+<h2 md-dialog-title>{{action}}</h2>
+<md-dialog-content>
+  <form class="form-horizontal" [formGroup]="lotteryForm" novalidate>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">最低消费金额：</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="name" (keyup)="checkLotteryNameIsExist()" placeholder="请输入本等级最低消费金额！">
+        <div class="error" *ngIf="lotteryForm.get('name').invalid && lotteryForm.get('name').dirty">
+          请输入名称
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">最高消费金额：</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="name" (keyup)="checkLotteryNameIsExist()" placeholder="请输入本等级最高消费金额！">
+        <div class="error" *ngIf="lotteryForm.get('name').invalid && lotteryForm.get('name').dirty">
+          请输入名称
+        </div>
+      </div>
+    </div>
+  </form>
+</md-dialog-content>
+<md-dialog-actions>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button *ngIf="!isAddNew" [disabled]="lotteryForm.invalid||goodsNameIsExist" (click)="addGoodsConfirm()" class="btn btn-danger"  color="primary">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button *ngIf="isAddNew" [disabled]="lotteryForm.invalid||goodsNameIsExist" (click)="updateGoodsConfirm()" class="btn btn-danger"  color="primary">确认修改</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button class="btn btn-primary"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>

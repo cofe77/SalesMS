@@ -1,0 +1,29 @@
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <div>
+        <app-nav></app-nav>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2">
+        <app-menu-for-admin></app-menu-for-admin>
+      </div>
+      <div class="col-lg-10 col-md-10 col-sm-10 desk-top">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <div id="maskDiv" class="maskDiv" *ngIf="!isOperatorExist">
+      <div class="passwordDiv">
+        <div class="tipsDiv">系统已锁定</div>
+        <div class="input-group">
+          <input type="password" class="form-control" #screenLockInput placeholder="请输入管理员密码">
+          <span class="input-group-btn">
+            <button (click)="validateOperator(screenLockInput.value)" class="btn btn-default operatorConfirmBtn" type="button">确认</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div toastContainer class="toastContainer"></div>

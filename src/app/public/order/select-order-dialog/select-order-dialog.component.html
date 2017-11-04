@@ -1,0 +1,55 @@
+<h2 md-dialog-title>选择订单</h2>
+<md-dialog-content>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="searchForm">
+        <form class="form-inline" role="form">
+          <div class="form-group">
+            <label class="sr-only">名称</label>
+            <input type="number" class="form-control" #searchTimeInput placeholder="请输入要查询的分钟数"/>
+          </div>
+          <button type="button" (click)="searchOrder(searchTimeInput.value)" class="btn btn-primary">搜索订单</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <table class="table table-hover table-bordered table-striped">
+        <caption class="caption">搜索结果</caption>
+        <thead>
+        <tr>
+          <th>订单号码</th>
+          <th>桌号</th>
+          <th>桌名</th>
+          <th>消费金额</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let recentOrder of orderData">
+          <td>{{recentOrder.serializtion}}</td>
+          <td>{{allDesks|deskNum:recentOrder.deskId}}</td>
+          <td>{{allDesks|deskName:recentOrder.deskId}}</td>
+          <td>{{recentOrder.totalPrice|number:'1.2-2'}}</td>
+          <td>
+            <button (click)="selectOrderConfirm(recentOrder.id)" type="radio" class="btn btn-danger">确认</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <nav *ngIf="orderInitIsFinished" aria-label="..." id="orderPg" style="margin: 0 auto;" [style.width]="(orderPage+2)*34+'px'">
+      <ul class="pagination">
+        <li class="disabled" *ngIf="currentOrderPage!=1"><a (click)="initOrderInfo(currentOrderPage-1)" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+        <li class="disabled" *ngIf="currentOrderPage==1"><span aria-hidden="true">&laquo;</span></li>
+        <li *ngFor="let orderPg of orderPageArray" [class.active]="orderPg==currentOrderPage"><a (click)="initOrderInfo(orderPg)">{{orderPg}}<span class="sr-only">(current)</span></a></li>
+        <li class="disabled" *ngIf="currentOrderPage!=orderPage"><a (click)="initOrderInfo(currentOrderPage+1)" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+        <li class="disabled" *ngIf="currentOrderPage==orderPage"><span aria-hidden="true">&raquo;</span></li>
+      </ul>
+    </nav>
+    </div>
+  </div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button class="btn btn-primary pull-right" md-dialog-close>关闭</button>
+</md-dialog-actions>

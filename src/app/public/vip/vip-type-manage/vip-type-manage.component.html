@@ -1,0 +1,37 @@
+<h2 md-dialog-title>{{action}}</h2>
+<md-dialog-content>
+  <table class="table table-hover table-bordered table-striped">
+    <caption class="caption">会员等级
+      <input (click)="addVipType()" type="button" class="btn btn-danger" value="添加类别">
+    </caption>
+    <thead>
+    <tr>
+      <th>类别名称</th>
+      <th>折扣</th>
+      <th>操作</th>
+      <!--<th>全选&nbsp;<input type="checkbox" (click)="checkAll()"/></th>-->
+    </tr>
+    </thead>
+    <tbody id="checkBoxTbody">
+    <tr *ngFor="let vipType of vipTypes">
+      <td>{{vipType.name}}</td>
+      <td>{{vipType.discount}}</td>
+      <td>
+        <input [disabled]="vipType.id==0" (click)="editVipType(vipType.id)" type="button" class="btn btn-info" value="修改">
+        <input [disabled]="vipType.id==0" (click)="deleteVipTypeConfirm(vipType.id)" type="button" class="btn btn-danger" value="删除">
+      </td>
+      <!--<td><input type="checkbox" [id]="'checkBox'+vipType.id" (click)="checkToDelete($event,vipType.id)"/></td>-->
+    </tr>
+    </tbody>
+  </table>
+  <!--<input (click)="deleteMultiVipTypeConfirm()" type="button" class="btn btn-danger pull-right" value="删除选中">-->
+</md-dialog-content>
+<md-dialog-actions>
+  <div class="row">
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4">
+      <button class="btn btn-primary"  md-dialog-close>关闭</button></div>
+    <div class="col-sm-4"></div>
+  </div>
+</md-dialog-actions>

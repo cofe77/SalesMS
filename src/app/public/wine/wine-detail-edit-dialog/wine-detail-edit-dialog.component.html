@@ -1,0 +1,15 @@
+<h2 md-dialog-title>{{dialogTitle}}</h2>
+<md-dialog-content>
+  <form class="form-inline">
+    <div class="form-group">
+      <label class="sr-only" for="exampleInputAmount"></label>
+      <div class="input-group">
+        <input type="text" class="form-control" id="exampleInputAmount" placeholder="请输入{{data.action}}的数量" #change>
+      </div>
+    </div>
+  </form>
+</md-dialog-content>
+<md-dialog-actions>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button (click)="addSavedBeerConfirm(change.value)" class="btn btn-danger"  color="primary">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button class="btn btn-primary"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>

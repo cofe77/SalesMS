@@ -1,0 +1,44 @@
+.menuBox{
+  height: 940px;
+  background-color:rgb(190, 215, 230);
+  padding-top: 1px;
+}
+.menuBox ul{
+  list-style: none;
+}
+.menu-li{
+  width: 88%;
+  border:1px solid #ccc;
+  border-radius: 60px 15px;
+  background-color: #eee;
+  text-align: center;
+  line-height: 260%;
+  cursor: pointer;
+  font-size: 17px;
+  box-shadow: 0 0 30px #666;
+  margin:30px auto;
+}
+.menu-li:hover{
+  box-shadow: 0 0 30px rgb(5, 255, 220);
+}
+.menu-li a{
+  display: block;
+  text-decoration: none;
+  color: #bc343c;
+}
+.menu-li a:focus{
+  color: #bc343c;
+  text-decoration: none;
+}
+.menu-li a:focus{
+  color: #bc343c;
+  text-decoration: none;
+}
+.menu-li a:link{
+  color: #bc343c;
+  text-decoration: none;
+}
+.menu-li a:active{
+  color: #bc343c;
+  text-decoration: none;
+}

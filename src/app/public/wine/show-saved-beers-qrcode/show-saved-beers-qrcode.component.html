@@ -1,0 +1,24 @@
+<h2 md-dialog-title>桌位二维码</h2>
+<md-dialog-content>
+  <div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="thumbnail">
+          <div style="width: 100%;height: 300px;margin: 0 auto;text-align: center">
+            <img *ngIf="savedBeersQRCodeImgLoadingIsFinish" [src]="savedBeersQRCodeBase64" style="height: 300px;width: auto" alt="...">
+          </div>
+          <div class="caption">
+            <p style="font-size: 18px">存酒单号：{{QRCode}}</p>
+            <h3>存酒二维码</h3>
+            <span style="color: red">
+              仅显示本次，请截图或拍照保存
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button class="btn btn-primary pull-right"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>

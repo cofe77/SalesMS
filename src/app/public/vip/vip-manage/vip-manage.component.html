@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="searchForm">
+      <form class="form-inline" role="form">
+        <button type="button" class="btn btn-lg btn-info" (click)="searchVip()">搜索会员</button>
+        <button (click)="addVip()" type="button" class="btn btn-lg btn-primary">添加会员</button>
+        <button (click)="selectVipToCharge()" type="button" class="btn btn-lg btn-danger">会员充值</button>
+        <button (click)="resetVipPassword()" type="button" class="btn btn-lg btn-danger">重置会员密码</button>
+        <button (click)="vipTypeManage()" type="button" class="btn btn-lg btn-danger">会员等级管理</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-hover table-bordered table-striped">
+      <caption class="caption">查询结果</caption>
+      <thead>
+      <tr>
+        <th>姓名</th>
+        <th>手机号码</th>
+        <th>余额（元）</th>
+        <th>会员等级</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngIf="vipIsExist">
+        <td>{{vip?.name}}</td>
+        <td>{{vip?.mobileNum}}</td>
+        <td>{{vip?.balance|number:'1.2-2'}}</td>
+        <td>{{vip?.typeName}}</td>
+        <td>
+          <input (click)="vipCharge()" type="button" class="btn btn-danger" value="会员充值">
+          <input (click)="editVip()" type="button" class="btn btn-info" value="修改信息">
+          <input (click)="updateVipPassword()" type="button" class="btn btn-primary" value="修改密码">
+          <input (click)="deleteVip()" type="button" class="btn btn-danger" value="删除会员">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

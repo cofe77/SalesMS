@@ -1,0 +1,96 @@
+<h2 md-dialog-title>{{action}}</h2>
+<md-dialog-content>
+  <form *ngIf="isAddNew" class="form-horizontal" [formGroup]="deskForm" novalidate>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">桌位名称：</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="name" (keyup)="checkNameIsExist()" placeholder="请输入桌位名称">
+        <div class="error" *ngIf="nameIsExist">
+          桌位名称已存在
+        </div>
+        <div class="error" *ngIf="deskForm.get('name').invalid&&deskForm.get('name').dirty">
+          请输入桌位名称
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">桌位号码：</label>
+      <div class="col-sm-9">
+        <input type="number" class="form-control" formControlName="deskNumber" (keyup)="checkDeskNumberIsExist()" pattern="^[0-9]{1,10}$" placeholder="请输入桌位号码">
+        <div class="error" *ngIf="deskForm.get('deskNumber').invalid&&deskForm.get('deskNumber').touched&&!deskForm.get('deskNumber').dirty">
+          请输入桌位号码
+        </div>
+        <div class="error" *ngIf="deskNumberIsExist">
+        桌位号码已存在
+        </div>
+        <div class="error" *ngIf="deskForm.get('deskNumber').invalid&&deskForm.get('deskNumber').touched&&deskForm.get('deskNumber').dirty">
+          桌位号码需要数字
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">桌位类别：</label>
+      <div class="col-sm-4">
+        <select class="form-control" name="" formControlName="typeId" >
+          <option selected="selected">==请选择桌位类别==</option>
+          <option *ngFor="let deskType of deskTypes" [value]="deskType.id">{{deskType.name}}</option>
+        </select>
+        <div class="error" *ngIf="deskForm.get('typeId').invalid && deskForm.get('typeId').touched">
+          请选择桌位类别
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <button class="btn btn-primary" (click)="addDeskType()">添加分类</button>
+      </div>
+    </div>
+  </form>
+  <form *ngIf="!isAddNew" class="form-horizontal" [formGroup]="deskForm" novalidate>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">桌位名称：</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="name" (keyup)="checkNameIsUpdate()" placeholder="请输入桌位名称">
+        <div class="error" *ngIf="deskForm.get('name').invalid&&deskForm.get('name').dirty">
+          请输入桌位名称
+        </div>
+        <div class="error" *ngIf="nameIsExist">
+          桌位名称已存在
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">桌位号码：</label>
+      <div class="col-sm-9">
+        <input type="number" class="form-control" formControlName="deskNumber" (keyup)="checkDeskNumberIsUpdate()" pattern="^[0-9]{1,10}$" placeholder="请输入桌位号码">
+        <div class="error" *ngIf="deskForm.get('deskNumber').invalid&&deskForm.get('deskNumber').touched&&!deskForm.get('deskNumber').dirty">
+          请输入桌位号码
+        </div>
+        <div class="error" *ngIf="deskNumberIsExist">
+          桌位号码已存在
+        </div>
+        <div class="error" *ngIf="deskForm.get('deskNumber').invalid&&deskForm.get('deskNumber').touched&&deskForm.get('deskNumber').dirty">
+          桌位号码需要数字
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">桌位类别：</label>
+      <div class="col-sm-4">
+        <select class="form-control" (change)="checkTypeIdIsUpdate()" name="" formControlName="typeId" >
+          <option selected="selected">==请选择桌位类别==</option>
+          <option *ngFor="let deskType of deskTypes" [value]="deskType.id">{{deskType.name}}</option>
+        </select>
+        <div class="error" *ngIf="deskForm.get('typeId').invalid && deskForm.get('typeId').touched">
+          请选择桌位类别
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <button class="btn btn-primary" (click)="addDeskType()">添加分类</button>
+      </div>
+    </div>
+  </form>
+</md-dialog-content>
+<md-dialog-actions>
+  <button class="btn btn-primary pull-right" autofocus color="primary" md-dialog-close>关闭</button>
+  <button class="btn btn-danger" *ngIf="isAddNew" [disabled]="deskForm.invalid||nameIsExist||deskNumberIsExist" (click)="updateDeskConfirm()" color="primary">确认</button>
+  <button class="btn btn-danger" *ngIf="isUpdate" [disabled]="deskForm.invalid||nameIsExist||deskNumberIsExist" (click)="updateDeskConfirm()" color="primary">确认修改</button>
+</md-dialog-actions>

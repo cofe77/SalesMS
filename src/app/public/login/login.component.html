@@ -1,0 +1,30 @@
+<div class="login-box">
+  <div class="demo form-bg" style="padding: 20px 0;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-offset-3 col-lg-6">
+          <form *ngIf="isAgree" novalidate [formGroup]="user" class="form-horizontal">
+            <span class="heading">用户登录</span>
+            <div class="form-group">
+              <input id="loginName" type="text" class="form-control" placeholder="用户名" formControlName="mobileNum">
+              <i class="fa fa-user"></i>
+              <div class="error" *ngIf="user.get('mobileNum').invalid && user.get('mobileNum').touched">
+                用户名长度为11位。
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" onfocus="this.type='password'" class="form-control" autocomplete="off" id="inputPassword3" placeholder="密　码" formControlName="password">
+              <i class="fa fa-lock"></i>
+              <div class="error" *ngIf="user.get('password').invalid && user.get('password').touched">
+                请输入密码
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="button" [disabled]="user.invalid" (click)="login()" class="btn btn-default">登录</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

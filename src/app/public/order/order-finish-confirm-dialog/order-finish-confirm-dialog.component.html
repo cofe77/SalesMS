@@ -1,0 +1,136 @@
+<h2 md-dialog-title>结单确认</h2>
+<md-dialog-content>
+  <div>
+    <div class="row">
+      <div class="col-sm-12">
+        <ngx-loading [show]="orderFinishIsLoading" [config]="{backdropBackgroundColour: 'rgba(0,0,0,0.3)', backdropBorderRadius: '5px' }"></ngx-loading>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" style="padding-top: 6px">结单人：</label>
+            <div class="col-sm-10" *ngIf="vipId==0">
+              <b style="color: red;font-size: 18px">普通顾客</b>&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; VIP结单请点击
+              <button type="button" class="btn btn-primary" (click)="selectVIP()">选择VIP</button>
+            </div>
+            <div class="col-sm-10" *ngIf="vipId!=0">
+              <b style="color: red;font-size: 18px">{{vip?.name}}</b>&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; 重新
+              <button type="button" class="btn btn-primary" (click)="selectVIP()">选择VIP</button>
+              <table class="table table-hover table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>会员等级</th>
+                  <th>会员折扣</th>
+                  <th>余额</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>{{vip.vipType['name']}}</td>
+                  <td style="color: red">{{vip.vipType['discount']}}</td>
+                  <td style="color: red">{{vip.balance|number:'1.2-2'}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">存酒查询：</label>
+            <div class="col-sm-10">
+              <button type="button" class="btn btn-danger" (click)="scanSavedBeerQRCode()">扫描存酒二维码</button>
+              &nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; 二维码无法扫描？请
+              <button type="button" class="btn btn-danger" (click)="searchSavedBeer()">搜索</button>
+              <span *ngIf="!vipSavedBeer&&!!savedBeersId&&vipId!=0">&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;</span>
+              <button *ngIf="!vipSavedBeer&&!!savedBeersId&&vipId!=0" type="button" class="btn btn-primary" (click)="useVipSavedBeer()">使用VIP存酒</button>
+              <table *ngIf="!!savedBeersId" class="table table-hover table-bordered table-striped">
+                <caption class="caption">{{savedBeersTitle}}</caption>
+                <thead>
+                <tr>
+                  <th>名称</th>
+                  <th>数量</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of savedBeersItems">
+                  <td>{{allGoods|goodsName:item.goodsId}}</td>
+                  <td>{{item.value}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">消费详情：</label>
+            <div class="col-sm-10">
+              <table class="table table-hover table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th style="width: 138px">名称</th>
+                  <th style="width: 72px">单价</th>
+                  <th style="width: 50px">数量</th>
+                  <th style="width: 150px">操作</th>
+                  <th style="width: 130px">价格</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of orderItems">
+                  <td>{{allGoods|goodsName:item.goodsId}}</td>
+                  <td>{{allGoods|goodsPrice:item.goodsId|number:'1.2-2'}}</td>
+                  <td>{{item.count}}</td>
+                  <td *ngIf="!item.savedBeersId">
+                    无存酒可用
+                  </td>
+                  <td *ngIf="!!item.savedBeersId">
+                    <select   style="color: red" (change)="isUseSavedBeer($event,item.itemId,item.count,item.value,item.goodsId,item.id)">
+                      <option selected value="0">不使用存酒</option>
+                      <option value="1">使用存酒：{{item.value}}</option>
+                    </select>
+                  </td>
+                  <td>{{item.price|number:'1.2-2'}}<span style="color: red"></span></td>
+                </tr>
+                <tr *ngFor="let addItem of orderAddItems">
+                  <td>{{addItem.goodsName}}</td>
+                  <td>无</td>
+                  <td>1</td>
+                  <td>无</td>
+                  <td>{{addItem.totalPrice|number:'1.2-2'}}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">订单合计：</label>
+            <div class="col-sm-10">
+              <table class="table table-hover table-bordered table-striped">
+                <thead>
+                <tr  style="text-align: center">
+                  <th style="width: 80px">订单价格</th>
+                  <th style="width: 102px">存酒抵扣</th>
+                  <th style="width: 95px">应收金额</th>
+                </tr>
+                </thead>
+                <tbody style="font-size: 20px">
+                <tr class="danger" style="text-align: right">
+                  <td style="color: red">{{orderTotalPrice|number:'1.2-2'}}</td>
+                  <td *ngIf="!savedBeersId">
+                    无
+                  </td>
+                  <td *ngIf="!!savedBeersId" style="color: red">
+                    -{{totalSavedBeerDeduct|number:'1.2-2'}}
+                  </td>
+                  <td style="color: red;">{{amountReceivable|number:'1.2-2'}}</td>
+                </tr>
+                <tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button class="btn btn-danger" *ngIf="orderFinishIsLoading" disabled color="primary">确认</button>
+  <button class="btn btn-danger" *ngIf="!orderFinishIsLoading" color="primary" (click)="orderDetailConfirm()">确认</button>
+  <button class="btn btn-primary pull-right"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>

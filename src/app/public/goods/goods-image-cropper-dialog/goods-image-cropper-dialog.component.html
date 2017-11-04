@@ -1,0 +1,31 @@
+<h2 md-dialog-title>{{action}}</h2>
+<md-dialog-content>
+
+  <div><a style="text-align: center; display: block;"  id="pic"></a></div>
+
+  <!--图片上传框-->
+  <div class="up-frame-bj noFocus" tabindex="-1" id="doc-modal-1">
+    <div class="up-frame-parent up-frame-radius">
+      <div class="fileLoad">
+        <div class="am-g am-fl">
+          <a class="fileInput">点击选择图片
+            <input type="file" id="inputImage" accept="image/jpeg,image/jpg,image/bmp,image/png,image/svg" (change)="selectImg()">
+          </a>
+        </div>
+        <div class="am-g am-fl" >
+          <div class="up-pre-before up-frame-radius">
+            <img alt="" src="" id="image" >
+          </div>
+          <div class="up-pre-after up-frame-radius">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</md-dialog-content>
+<md-dialog-actions>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button (click)="imageCropperConfirm()" class="btn btn-danger"  color="primary">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button class="btn btn-primary pull-right"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>
+

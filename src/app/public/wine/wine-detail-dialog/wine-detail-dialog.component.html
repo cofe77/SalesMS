@@ -1,0 +1,29 @@
+<h2 md-dialog-title>存酒单</h2>
+<md-dialog-content>
+  <table class="table table-hover table-bordered table-striped">
+    <caption class="caption">存酒人：savedBeersList.vipName</caption>
+    <thead>
+    <tr>
+      <th>名称</th>
+      <th>当前数量</th>
+      <th>历史记录</th>
+      <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>savedBeer.name</td>
+      <td>savedBeer.count</td>
+      <td> [innerHTML]="savedBeer.log"</td>
+      <td>
+        <input (click)="addSavedWine()" type="button" class="btn btn-info" value="追加">
+        <input (click)="takeOutSavedWine()" type="button" class="btn btn-primary" value="取出">
+        <input (click)="deleteSavedWine()" type="button" class="btn btn-danger" value="删除">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</md-dialog-content>
+<md-dialog-actions>
+  <button class="btn btn-primary pull-right"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>

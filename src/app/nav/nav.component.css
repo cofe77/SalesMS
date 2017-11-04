@@ -1,0 +1,14 @@
+.navBox{
+  height: 80px;
+  background-color: aquamarine;
+}
+.navUnit{
+  text-align: center;
+  font-family: "Microsoft Sans Serif";
+  font-size: 25px;
+  font-weight: 200;
+  line-height: 80px;
+  border:1px solid #eeeeee;
+  padding: 1px;
+  margin:0;
+}

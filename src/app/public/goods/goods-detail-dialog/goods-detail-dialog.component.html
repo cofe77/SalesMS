@@ -1,0 +1,41 @@
+<h2 md-dialog-title>商品详情</h2>
+<md-dialog-content>
+  <div>
+    <div class="row">
+      <div class="col-sm-5">
+        <div style="width: 100%;height: 300px;margin: 0 auto;text-align: center">
+          <img [src]="goods.photoUrl" style="height: 300px;width: 300px" alt="...">
+        </div>
+      </div>
+      <div class="col-sm-7">
+        <div class="thumbnail">
+        <div class="caption">
+          <form class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-3 control-label">商品名称：</label>
+              <div class="col-sm-9">
+                {{goods.name}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">商品价格：</label>
+              <div class="col-sm-9">
+                ￥{{goods.price | number:'1.2-2'}}
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3 control-label">商品介绍：</label>
+              <div class="col-sm-9">
+                {{goods.describe}}
+              </div>
+            </div>
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button class="btn btn-primary pull-right"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>

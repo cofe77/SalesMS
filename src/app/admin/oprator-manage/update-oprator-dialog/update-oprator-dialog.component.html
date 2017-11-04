@@ -1,0 +1,108 @@
+<h2 md-dialog-title>{{action}}</h2>
+<md-dialog-content>
+  <div>
+    <div class="row">
+      <div class="col-sm-12">
+        <ngx-loading [show]="operatorAddIsFinish" [config]="{backdropBackgroundColour: 'rgba(0,0,0,0.3)', backdropBorderRadius: '5px' }"></ngx-loading>
+        <form *ngIf="isAddNew" class="form-horizontal" [formGroup]="operatorForm" novalidate>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">操作员姓名：</label>
+            <div class="col-sm-8">
+              <input type="text" formControlName="name" id="addNewName" class="form-control" placeholder="请输入操作员姓名">
+              <div class="error" *ngIf="operatorForm.get('name').invalid && operatorForm.get('name').dirty">
+                请输入操作员姓名
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">手机号码：</label>
+            <div class="col-sm-8">
+              <input type="text" formControlName="mobileNum" id="addNewMobileNum" class="form-control" pattern="^1[0-9]{10,10}$" (keyup)="checkOperatorMobileNumIsExist()" placeholder="请输入手机号码">
+              <div class="error" *ngIf="operatorForm.get('mobileNum').invalid&&operatorForm.get('mobileNum').touched&&!operatorForm.get('mobileNum').dirty">
+                请输入手机号码
+              </div>
+              <div class="error" *ngIf="operatorMobileNumIsExist">
+                手机号码已存在
+              </div>
+              <div class="error" *ngIf="operatorForm.get('mobileNum').invalid&&operatorForm.get('mobileNum').touched&&operatorForm.get('mobileNum').dirty">
+                手机号码不合法，需要11位的数字
+              </div>
+            </div>
+          </div>
+          <input type="text" style="display: none;">
+          <div class="form-group">
+            <label class="col-sm-4 control-label">操作员密码：</label>
+            <div class="col-sm-8">
+              <input type="text" onfocus="this.type='password'" formControlName="firstPsw" autocomplete="off" id="addNewFirstPsw" pattern="^[0-9]{6,10}$" validateEqual="secondPsw" reverse="true" class="form-control" placeholder="请输入密码">
+              <div class="error" *ngIf="operatorForm.get('firstPsw').invalid&&operatorForm.get('firstPsw').touched&&!operatorForm.get('firstPsw').dirty">
+                请输入密码
+              </div>
+              <div class="error" *ngIf="operatorForm.get('firstPsw').invalid&&operatorForm.get('firstPsw').touched&&operatorForm.get('firstPsw').dirty">
+                密码不合法，需要6-10位的数字
+              </div>
+              <div class="error" *ngIf="operatorForm.get('firstPsw').invalid&&operatorForm.get('firstPsw').touched&&operatorForm.get('firstPsw').dirty&&operatorForm.get('firstPsw').validateEqual">
+                两次输入的密码不一致
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">再次输入密码：</label>
+            <div class="col-sm-8">
+              <input type="text" onfocus="this.type='password'" formControlName="secondPsw" autocomplete="off" id="addNewSecondPsw" pattern="^[0-9]{6,10}$" validateEqual="firstPsw" class="form-control" placeholder="请再次输入密码">
+              <div class="error" *ngIf="operatorForm.get('secondPsw').invalid&&operatorForm.get('secondPsw').touched&&!operatorForm.get('secondPsw').dirty">
+                请再次输入密码
+              </div>
+              <div class="error" *ngIf="operatorForm.get('secondPsw').invalid&&operatorForm.get('secondPsw').touched&&operatorForm.get('secondPsw').dirty">
+                密码不一致
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">操作员等级：</label>
+            <div class="col-sm-5">
+              <select class="form-control" id="addNewPermission" formControlName="permission">
+                <option value="1">超级管理员</option>
+                <option value="2">普通管理员</option>
+              </select>
+              <div class="error" *ngIf="operatorForm.get('permission').invalid && operatorForm.get('permission').touched">
+                请选择操作员类型
+              </div>
+            </div>
+            <div class="col-sm-3">
+            </div>
+          </div>
+        </form>
+        <form *ngIf="!isAddNew" class="form-horizontal" [formGroup]="operatorForm" novalidate>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">操作员姓名：</label>
+            <div class="col-sm-8">
+              <input type="text" formControlName="name" id="newName" class="form-control" placeholder="请输入操作员姓名">
+              <div class="error" *ngIf="operatorForm.get('name').invalid && operatorForm.get('name').dirty">
+                请输入操作员姓名
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">手机号码：</label>
+            <div class="col-sm-8">
+              <input type="text" formControlName="mobileNum" id="mobileNum" class="form-control" pattern="^1[0-9]{10,10}$" placeholder="请输入手机号码" (keyup)="checkOperatorMobileNumIsExist()">
+              <div class="error" *ngIf="operatorForm.get('mobileNum').invalid&&operatorForm.get('mobileNum').touched&&!operatorForm.get('mobileNum').dirty">
+                请输入手机号码
+              </div>
+              <div class="error" *ngIf="operatorMobileNumIsExist">
+                手机号码已存在
+              </div>
+              <div class="error" *ngIf="operatorForm.get('mobileNum').invalid&&operatorForm.get('mobileNum').touched&&operatorForm.get('mobileNum').dirty">
+                手机号码不合法，需要11位的数字
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</md-dialog-content>
+<md-dialog-actions>
+  <button class="btn btn-danger" [disabled]="operatorForm.invalid" color="primary" (click)="updateOperatorConfirm()">确认</button>
+  <button class="btn btn-primary pull-right"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>

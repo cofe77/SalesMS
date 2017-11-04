@@ -1,0 +1,53 @@
+<h2 md-dialog-title>{{action}}</h2>
+<md-dialog-content>
+  <form class="form-horizontal" [formGroup]="lotteryForm" novalidate>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">活动名称：</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" formControlName="name" id="goodsName" (keyup)="checkLotteryNameIsExist()" placeholder="请输入抽奖名称！类似：情人节抽奖、普通抽奖。">
+        <div class="error" *ngIf="lotteryForm.get('name').invalid && lotteryForm.get('name').dirty">
+          请输入名称
+        </div>
+        <div class="error" *ngIf="goodsNameIsExist">
+          商品已存在
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">开始时间：</label>
+      <div class="col-sm-9">
+        <input id="startTime" class="form-control" placeholder="点击设置开始时间" type="text">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">结束时间：</label>
+      <div class="col-sm-9">
+        <input id="endTime" class="form-control" placeholder="点击设置结束时间" type="text">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">档次设置：</label>
+      <div class="col-sm-9">
+        <input (click)="toSetLotteryLevel()" type="button" class="btn btn-primary" [value]="lotteryLevelHandle">
+        <div *ngIf="!!goodsImgUrl" style="width: 200px;height: 200px;border: 1px solid #e0e0e0;margin-top: 10px">
+          <img [src]="goodsImgUrl" alt=""  style="width: 200px;height: 200px;">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">活动简介：</label>
+      <div class="col-sm-9">
+        <textarea formControlName="describe" class="form-control" id="describe" cols="30" rows="3" maxlength="50" placeholder="商品简介最多支持50个字符！"></textarea>
+        <div class="error" *ngIf="lotteryForm.get('describe').invalid && lotteryForm.get('describe').touched">
+          请输入简介
+        </div>
+      </div>
+    </div>
+  </form>
+</md-dialog-content>
+<md-dialog-actions>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button *ngIf="!isAddNew" [disabled]="lotteryForm.invalid||goodsNameIsExist" (click)="addGoodsConfirm()" class="btn btn-danger"  color="primary">确认</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button *ngIf="isAddNew" [disabled]="lotteryForm.invalid||goodsNameIsExist" (click)="updateGoodsConfirm()" class="btn btn-danger"  color="primary">确认修改</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button class="btn btn-primary"  color="primary" md-dialog-close>关闭</button>
+</md-dialog-actions>
+

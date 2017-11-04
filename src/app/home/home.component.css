@@ -1,0 +1,117 @@
+.desk-top{
+  background-color: #eeeeee;
+  height:940px;
+}
+*{
+  margin:0;
+  padding: 0;
+}
+.toastContainer{
+  display: block;
+  width: 300px;
+  height:auto;
+  z-index: 1000;
+  position: fixed;
+  bottom: 0;
+  right:0;
+}
+.waitForDispatchBox{
+  height: 800px;
+  font-size: 14px;
+  padding:5px;
+}
+.panel-heading,.panel-body{
+  padding:0;
+}
+.panel-title{
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+.panel-body{
+  /*height: 654px;*/
+  overflow: auto;
+}
+.dispatchAlerts{
+  width:100%;
+}
+.alert{
+  padding: 10px;
+  margin:5px;
+}
+.pagination{
+  margin:5px 0 0 4px;
+}
+.btn-3d{
+  display: inline-block;
+  float: right;
+  position: relative;
+  top:-45px;
+  right:-15px;
+  -webkit-perspective: 800px;
+}
+.dispatchConfirm{
+  margin: 10px 0;
+  padding:5px;
+}
+.spanGroup{
+  -webkit-transform-style: preserve-3d;
+  transition: 0.5s ease;
+  /*设置旋转中心 xyz*/
+  -webkit-transform-origin: center center 15px;
+}
+.spanGroup>div{
+  -webkit-backface-visibility: hidden;
+}
+.spanGroup>div:nth-of-type(1){
+  position: absolute;
+  left: 0;
+  top: -30px;
+  /*background: pink;*/
+  -webkit-transform-origin: bottom;
+  -webkit-transform: rotateX(-90deg);
+}
+.btn-toolbar{
+  position: relative;
+  right:10px;
+}
+.confirmGroup{
+  position: relative;
+  top: 10px;
+  right: 6px;
+}
+.rollDis{
+  -webkit-transform: rotateX(91deg);
+}
+.btnNormal{
+  opacity: 1;
+}
+.maskDiv{
+  position: absolute;
+  width:100%;
+  height: 940px;
+  top: 84px;
+  left:0;
+  background-color:rgba(0,0,0,0.8);
+  z-index:1006
+}
+.tipsDiv{
+  position:relative;
+  width:100%;
+  height:50px;
+  font-size: 18px;
+  text-align: center;
+  color: white;
+}
+
+.passwordDiv{
+  position:relative;
+  width:200px;
+  height:50px;
+  top:200px;
+  margin:0 auto;
+  z-index:1006
+}
+.operatorConfirmBtn{
+  padding:6px 12px ;
+}
